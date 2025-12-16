@@ -6,10 +6,7 @@
     <title>SODmAX Pro | استخراج حرفه‌ای با پاداش USDT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- ALL STYLES INLINE -->
     <style>
-        /* تمام استایل‌های شما اینجا */
         :root {
             --primary: #0066FF;
             --primary-dark: #0052CC;
@@ -67,6 +64,7 @@
             touch-action: manipulation;
         }
 
+        /* بهینه‌سازی برای تاچ */
         button, .btn, .miner-core {
             touch-action: manipulation;
             -webkit-touch-callout: none;
@@ -74,6 +72,7 @@
             user-select: none;
         }
 
+        /* کانتینر اصلی */
         .container {
             max-width: 100%;
             margin: 0 auto;
@@ -82,6 +81,7 @@
             z-index: 1;
         }
 
+        /* صفحه ثبت نام */
         .register-overlay {
             position: fixed;
             top: 0;
@@ -231,6 +231,7 @@
             background: rgba(0, 102, 255, 0.1);
         }
         
+        /* ناوبری موبایل */
         .navbar {
             display: flex;
             flex-direction: column;
@@ -305,43 +306,6 @@
             margin-top: 4px;
         }
 
-        .nav-menu {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            margin-right: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 0 8px;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-menu a:nth-child(1) { background: rgba(0,102,255,0.3); }
-        .nav-menu a:nth-child(2) { background: rgba(255,107,53,0.3); }
-        .nav-menu a:nth-child(3) { background: rgba(0,212,170,0.3); }
-        .nav-menu a:nth-child(4) { background: rgba(148,163,184,0.3); }
-
-        .nav-menu a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .nav-text {
-            display: inline;
-        }
-
         .wallet-section {
             display: flex;
             flex-direction: column;
@@ -401,6 +365,7 @@
             font-weight: 500;
         }
 
+        /* ماینر اصلی */
         .miner-section {
             margin: 40px 0 60px;
         }
@@ -545,6 +510,7 @@
             margin-top: 24px;
         }
 
+        /* استات ویو */
         .stats-view {
             display: flex;
             flex-direction: column;
@@ -609,6 +575,7 @@
             word-break: break-all;
         }
 
+        /* بخش پنل‌های ویژه فروش SOD */
         .sod-sale-section {
             margin: 60px 0;
         }
@@ -720,6 +687,7 @@
             margin-right: 8px;
         }
 
+        /* پاداش USDT */
         .reward-section {
             background: linear-gradient(145deg, #0D1430 0%, #121828 100%);
             border-radius: var(--radius-xl);
@@ -783,6 +751,7 @@
             line-height: 1;
         }
 
+        /* پروگرس‌بار */
         .progress-container {
             margin: 32px 0;
             position: relative;
@@ -827,6 +796,7 @@
             overflow: hidden;
         }
 
+        /* جدول تراکنش‌ها */
         .transactions-section {
             margin: 60px 0;
         }
@@ -871,6 +841,7 @@
             flex-shrink: 0;
         }
 
+        /* نوتیفیکیشن */
         .notification {
             position: fixed;
             top: 16px;
@@ -908,6 +879,12 @@
             box-shadow: var(--shadow-primary);
         }
 
+        /* انیمیشن‌ها */
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         @keyframes pulse {
             0%, 100% { 
                 opacity: 1;
@@ -930,6 +907,18 @@
             }
         }
 
+        @keyframes usdtEffect {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(0, -150px) scale(1.5);
+            }
+        }
+
+        /* استایل برای تبلت */
         @media (min-width: 768px) {
             html {
                 font-size: 16px;
@@ -944,11 +933,6 @@
                 flex-direction: row;
                 justify-content: space-between;
                 padding: 20px 0;
-            }
-            
-            .nav-menu {
-                flex-direction: row;
-                margin-right: 0;
             }
             
             .wallet-section {
@@ -1000,19 +984,6 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .nav-text {
-                display: none;
-            }
-            .nav-menu {
-                gap: 5px;
-            }
-            .nav-menu a {
-                padding: 5px 8px;
-                font-size: 11px;
-            }
-        }
-
         @media (min-width: 992px) {
             .container {
                 max-width: 1200px;
@@ -1052,11 +1023,6 @@
                     <input type="email" class="form-input" placeholder="example@gmail.com" id="email" required>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-label">کد دعوت (اختیاری)</label>
-                    <input type="text" class="form-input" placeholder="کد دوست خود را وارد کنید" id="referralCode">
-                </div>
-
                 <button type="submit" class="btn btn-primary">
                     <i class="fas fa-user-plus"></i>
                     ثبت نام و شروع استخراج
@@ -1082,27 +1048,6 @@
                     <div class="logo-subtitle">استخراج هوشمند • پاداش واقعی</div>
                 </div>
             </a>
-
-            <!-- منوی navigation -->
-            <div class="nav-menu">
-                <a href="dashboard.html">
-                    <i class="fas fa-chart-line"></i>
-                    <span class="nav-text">داشبورد</span>
-                </a>
-                <a href="leaderboard.html">
-                    <i class="fas fa-trophy"></i>
-                    <span class="nav-text">لیدربرد</span>
-                </a>
-                <a href="missions.html">
-                    <i class="fas fa-tasks"></i>
-                    <span class="nav-text">مأموریت‌ها</span>
-                </a>
-                <!-- لینک مدیریت - فقط برای ادمین نمایش داده می‌شود -->
-                <a href="admin.html" id="adminLink" style="display: none; background: rgba(148,163,184,0.3);">
-                    <i class="fas fa-user-shield"></i>
-                    <span class="nav-text">مدیریت</span>
-                </a>
-            </div>
 
             <div class="wallet-section">
                 <div class="wallet-row">
@@ -1325,14 +1270,9 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
-        // =============================================
-        // SODmAX Pro - نسخه ساده (بدون دیتابیس برای تست)
-        // =============================================
-        
         // داده‌های بازی
-        let gameData = {
+        const gameData = {
             sodBalance: 0,
             usdtBalance: 0,
             todayEarnings: 0,
@@ -1340,27 +1280,33 @@
             userLevel: 1,
             usdtProgress: 0,
             autoMining: false,
+            transactions: [],
             boostActive: false,
-            totalMined: 0
+            boostEndTime: 0,
+            lastClaimTime: null
         };
-        
+
         // داده‌های کاربر
-        let userData = {
+        const userData = {
             isRegistered: false,
             fullName: "",
-            email: "",
-            userId: null,
-            referralCode: ""
+            email: ""
         };
-        
+
         // پنل‌های فروش SOD
         const sodSalePlans = [
             {
                 id: 1,
                 name: "پنل استارتر",
                 usdtPrice: 1,
-                sodAmount: 5000000,
-                features: ["۵,۰۰۰,۰۰۰ SOD", "هدیه ۵۰۰,۰۰۰ SOD اضافی", "قدرت استخراج +۵٪"],
+                sodAmount: 5000000, // 5 میلیون SOD
+                features: [
+                    "۵,۰۰۰,۰۰۰ SOD",
+                    "هدیه ۵۰۰,۰۰۰ SOD اضافی",
+                    "قدرت استخراج +۵٪ به مدت ۷ روز",
+                    "پشتیبانی اولیه",
+                    "کد تخفیف ۱۰٪ برای خرید بعدی"
+                ],
                 popular: false,
                 discount: 0
             },
@@ -1368,8 +1314,15 @@
                 id: 2,
                 name: "پنل پرو",
                 usdtPrice: 5,
-                sodAmount: 30000000,
-                features: ["۳۰,۰۰۰,۰۰۰ SOD", "هدیه ۳,۰۰۰,۰۰۰ SOD اضافی", "قدرت استخراج +۱۵٪"],
+                sodAmount: 30000000, // 30 میلیون SOD
+                features: [
+                    "۳۰,۰۰۰,۰۰۰ SOD",
+                    "هدیه ۳,۰۰۰,۰۰۰ SOD اضافی",
+                    "قدرت استخراج +۱۵٪ به مدت ۱۴ روز",
+                    "پشتیبانی ویژه",
+                    "کد تخفیف ۱۵٪ برای خرید بعدی",
+                    "دسترسی به استخراج خودکار"
+                ],
                 popular: true,
                 discount: 10
             },
@@ -1377,8 +1330,16 @@
                 id: 3,
                 name: "پنل پلاتینیوم",
                 usdtPrice: 15,
-                sodAmount: 100000000,
-                features: ["۱۰۰,۰۰۰,۰۰۰ SOD", "هدیه ۱۰,۰۰۰,۰۰۰ SOD اضافی", "قدرت استخراج +۳۰٪"],
+                sodAmount: 100000000, // 100 میلیون SOD
+                features: [
+                    "۱۰۰,۰۰۰,۰۰۰ SOD",
+                    "هدیه ۱۰,۰۰۰,۰۰۰ SOD اضافی",
+                    "قدرت استخراج +۳۰٪ به مدت ۳۰ روز",
+                    "پشتیبانی VIP",
+                    "کد تخفیف ۲۰٪ برای خرید بعدی",
+                    "دسترسی به استخراج خودکار",
+                    "دریافت روزانه پاداش SOD"
+                ],
                 popular: false,
                 discount: 15
             },
@@ -1386,225 +1347,77 @@
                 id: 4,
                 name: "پنل الماس",
                 usdtPrice: 50,
-                sodAmount: 500000000,
-                features: ["۵۰۰,۰۰۰,۰۰۰ SOD", "هدیه ۵۰,۰۰۰,۰۰۰ SOD اضافی", "قدرت استخراج +۵۰٪"],
+                sodAmount: 500000000, // 500 میلیون SOD
+                features: [
+                    "۵۰۰,۰۰۰,۰۰۰ SOD",
+                    "هدیه ۵۰,۰۰۰,۰۰۰ SOD اضافی",
+                    "قدرت استخراج +۵۰٪ به مدت ۶۰ روز",
+                    "پشتیبانی اختصاصی",
+                    "کد تخفیف ۳۰٪ برای خرید بعدی",
+                    "دسترسی به استخراج خودکار",
+                    "دریافت روزانه پاداش SOD",
+                    "مشارکت در سود شبکه",
+                    "دسترسی به API پیشرفته"
+                ],
                 popular: false,
                 discount: 20
             }
         ];
-        
-        // ==================== توابع کمکی ====================
-        
-        // نمایش نوتیفیکیشن
-        function showNotification(title, message) {
-            const notification = document.getElementById('notification');
-            document.getElementById('notificationTitle').textContent = title;
-            document.getElementById('notificationMessage').textContent = message;
+
+        // راه‌اندازی
+        function init() {
+            checkRegistration();
+            setupEventListeners();
+            renderSODSalePlans();
             
-            notification.classList.add('show');
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 4000);
-        }
-        
-        // فرمت عدد
-        function formatNumber(num) {
-            if (num >= 1000000000) return (num / 1000000000).toFixed(2) + 'B';
-            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-            return Math.floor(num).toLocaleString('fa-IR');
-        }
-        
-        // ==================== منطق بازی ====================
-        
-        // استخراج دستی
-        function manualMine() {
             if (!userData.isRegistered) {
-                showNotification('❌', 'ابتدا ثبت نام کنید');
-                return;
-            }
-            
-            let earned = gameData.miningPower;
-            if (gameData.boostActive) earned *= 3;
-            
-            // آپدیت داده‌ها
-            gameData.sodBalance += earned;
-            gameData.totalMined += earned;
-            gameData.todayEarnings += earned;
-            gameData.usdtProgress += earned;
-            
-            // آپدیت UI
-            updateUI();
-            
-            // ایجاد افکت
-            createMiningEffect(earned);
-            
-            // بررسی پاداش USDT
-            checkUSDT();
-        }
-        
-        // بررسی پاداش USDT
-        function checkUSDT() {
-            if (gameData.usdtProgress >= 10000000) {
-                const usdtEarned = 0.01;
-                
-                gameData.usdtBalance += usdtEarned;
-                gameData.usdtProgress -= 10000000;
-                
-                showNotification('🎉', `${usdtEarned.toFixed(4)} USDT دریافت کردید!`);
-                
-                // شانس ارتقاء سطح
-                if (Math.random() > 0.85) {
-                    gameData.userLevel++;
-                    gameData.miningPower = 10 * gameData.userLevel;
-                    showNotification('⭐', `سطح شما به ${gameData.userLevel} ارتقاء یافت!`);
-                }
+                showRegister();
+            } else {
+                startGame();
             }
         }
-        
-        // خرید پنل SOD
-        function buySODPlan(planId) {
-            if (!userData.isRegistered) {
-                showNotification('❌', 'ابتدا ثبت نام کنید');
-                return;
-            }
-            
-            const plan = sodSalePlans.find(p => p.id === planId);
-            if (!plan) return;
-            
-            // در نسخه واقعی اینجا پرداخت انجام می‌شود
-            const bonusSOD = Math.floor(plan.sodAmount * (plan.discount / 100));
-            const totalSOD = plan.sodAmount + bonusSOD;
-            
-            gameData.sodBalance += totalSOD;
-            
-            showNotification('🎉', `پنل ${plan.name} خریداری شد! ${formatNumber(totalSOD)} SOD دریافت کردید.`);
-            
-            updateUI();
-        }
-        
-        // دریافت USDT
-        function claimUSDT() {
-            if (gameData.usdtBalance > 0) {
-                const usdtToClaim = gameData.usdtBalance;
-                const sodNeeded = usdtToClaim * 1000000000;
-                
-                if (gameData.sodBalance >= sodNeeded) {
-                    if (confirm(`آیا مایل به دریافت ${usdtToClaim.toFixed(4)} USDT هستید؟\n${formatNumber(sodNeeded)} SOD از موجودی کسر خواهد شد.`)) {
-                        gameData.usdtBalance = 0;
-                        gameData.sodBalance -= sodNeeded;
-                        
-                        showNotification('✅', `${usdtToClaim.toFixed(4)} USDT دریافت شد.`);
-                        
-                        updateUI();
+
+        // بررسی ثبت نام
+        function checkRegistration() {
+            try {
+                const savedUser = localStorage.getItem('sodmaxUserData');
+                if (savedUser) {
+                    const data = JSON.parse(savedUser);
+                    Object.assign(userData, data);
+                    userData.isRegistered = true;
+                    
+                    const savedGame = localStorage.getItem('sodmaxGameData');
+                    if (savedGame) {
+                        const game = JSON.parse(savedGame);
+                        Object.assign(gameData, game);
                     }
-                } else {
-                    showNotification('⚠️', `موجودی SOD کافی نیست. نیاز: ${formatNumber(sodNeeded)} SOD`);
                 }
-            } else {
-                showNotification('💰', 'هنوز USDT پاداش دریافت نکرده‌اید.');
+            } catch (e) {
+                console.log('خطا در بارگذاری:', e);
             }
         }
-        
-        // افزایش قدرت
-        function boostMining() {
-            if (gameData.sodBalance >= 5000) {
-                gameData.sodBalance -= 5000;
-                gameData.boostActive = true;
-                gameData.miningPower *= 3;
-                
-                showNotification('⚡', 'قدرت استخراج ۳ برابر شد! (۳۰ دقیقه)');
-                
-                updateUI();
-                
-                setTimeout(() => {
-                    gameData.boostActive = false;
-                    gameData.miningPower = 10 * gameData.userLevel;
-                    showNotification('⏰', 'زمان افزایش قدرت به پایان رسید.');
-                    updateUI();
-                }, 30 * 60 * 1000);
-            } else {
-                showNotification('⚠️', 'برای افزایش قدرت به ۵۰۰۰ SOD نیاز دارید.');
-            }
+
+        // نمایش ثبت نام
+        function showRegister() {
+            document.getElementById('registerOverlay').style.display = 'flex';
+            document.getElementById('mainContainer').style.display = 'none';
         }
-        
-        // ==================== UI Functions ====================
-        
-        function updateUI() {
-            // موجودی‌ها
-            document.getElementById('sodBalance').innerHTML = formatNumber(gameData.sodBalance) + ' <span>SOD</span>';
-            document.getElementById('usdtBalance').innerHTML = gameData.usdtBalance.toFixed(4) + ' <span>USDT</span>';
-            
-            // آمار
-            document.getElementById('todayEarnings').textContent = formatNumber(gameData.todayEarnings) + ' SOD';
-            document.getElementById('miningPower').textContent = gameData.miningPower + 'x';
-            document.getElementById('clickReward').textContent = '+' + gameData.miningPower + ' SOD';
-            document.getElementById('userLevel').textContent = gameData.userLevel;
-            
-            // پاداش USDT
-            document.getElementById('availableUSDT').textContent = gameData.usdtBalance.toFixed(4) + ' USDT';
-            document.getElementById('nextReward').textContent = '۰.۰۱ USDT';
-            
-            const progressPercent = (gameData.usdtProgress / 10000000) * 100;
-            document.getElementById('progressFill').style.width = progressPercent + '%';
-            document.getElementById('progressText').textContent = formatNumber(gameData.usdtProgress) + ' / ۱۰,۰۰۰,۰۰۰ SOD (۰.۰۱ USDT)';
+
+        // مخفی کردن ثبت نام
+        function hideRegister() {
+            document.getElementById('registerOverlay').style.display = 'none';
+            document.getElementById('mainContainer').style.display = 'block';
         }
-        
-        function renderTransactions() {
-            const list = document.getElementById('transactionsList');
-            if (!list) return;
-            
-            // نمایش نمونه‌ای از تراکنش‌ها
-            list.innerHTML = `
-                <div class="transaction-row">
-                    <div class="transaction-type">
-                        <div class="transaction-icon">⛏️</div>
-                        <div style="flex: 1;">
-                            <div style="font-weight: bold;">استخراج دستی</div>
-                            <div style="color: var(--text-secondary); font-size: 12px;">همین الان</div>
-                        </div>
-                        <div style="font-weight: bold; color: var(--primary-light);">+${gameData.miningPower} SOD</div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        function createMiningEffect(amount) {
-            const effect = document.createElement('div');
-            effect.style.cssText = `
-                position: fixed;
-                color: var(--primary-light);
-                font-weight: 900;
-                font-size: 16px;
-                pointer-events: none;
-                z-index: 10000;
-                text-shadow: 0 0 10px var(--primary);
-                animation: miningEffect 1s ease-out forwards;
-            `;
-            
-            const core = document.getElementById('minerCore');
-            const rect = core.getBoundingClientRect();
-            effect.style.left = rect.left + rect.width / 2 + 'px';
-            effect.style.top = rect.top + rect.height / 2 + 'px';
-            effect.textContent = '+' + formatNumber(amount);
-            
-            document.body.appendChild(effect);
-            
-            setTimeout(() => effect.remove(), 1000);
-        }
-        
-        // ==================== Event Handlers ====================
-        
-        function handleRegistration(e) {
+
+        // ثبت نام فرم
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const fullName = document.getElementById('fullName').value.trim();
             const email = document.getElementById('email').value.trim();
-            const referralCode = document.getElementById('referralCode').value.trim();
             
             if (!fullName || !email) {
-                showNotification('❌', 'لطفاً نام و ایمیل را وارد کنید');
+                showNotification('خطا', 'لطفاً تمام فیلدها را پر کنید');
                 return;
             }
             
@@ -1621,45 +1434,14 @@
             localStorage.setItem('sodmaxUserData', JSON.stringify(userData));
             localStorage.setItem('sodmaxGameData', JSON.stringify(gameData));
             
-            showNotification('✅', `ثبت نام موفق! خوش آمدید ${fullName}! ۱ میلیون SOD هدیه گرفتید.`);
+            showNotification('ثبت نام موفق', 'خوش آمدید ' + fullName + '! هدیه ۱ میلیون SOD دریافت کردید.');
             
             setTimeout(() => {
-                hideRegister();
                 startGame();
             }, 1500);
-        }
-        
-        function showSODSale() {
-            document.getElementById('sodSaleSection').style.display = 'block';
-            document.getElementById('sodSaleSection').scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-        
-        // ==================== Initialization ====================
-        
-        function hideRegister() {
-            document.getElementById('registerOverlay').style.display = 'none';
-            document.getElementById('mainContainer').style.display = 'block';
-        }
-        
-        function showRegister() {
-            document.getElementById('registerOverlay').style.display = 'flex';
-            document.getElementById('mainContainer').style.display = 'none';
-        }
-        
-        function startGame() {
-            updateUI();
-            renderSODSalePlans();
-            renderTransactions();
-            
-            showNotification('🌟', `خوش آمدید ${userData.fullName}!`);
-            
-            // بررسی ادمین
-            checkAdminAccess();
-        }
-        
+        });
+
+        // رندر پنل‌های فروش SOD
         function renderSODSalePlans() {
             const grid = document.getElementById('salePlansGrid');
             if (!grid) return;
@@ -1670,6 +1452,7 @@
                 const card = document.createElement('div');
                 card.className = `sale-plan-card ${plan.popular ? 'featured' : ''}`;
                 
+                // محاسبه SOD با در نظر گرفتن تخفیف
                 const totalSOD = plan.sodAmount + Math.floor(plan.sodAmount * (plan.discount / 100));
                 
                 card.innerHTML = `
@@ -1695,22 +1478,95 @@
                 grid.appendChild(card);
             });
         }
-        
-        function checkAdminAccess() {
-            if (userData.email === "hamyarhf@gmail.com") {
-                document.getElementById('adminLink').style.display = 'flex';
-            }
+
+        // خرید پنل SOD
+        function buySODPlan(planId) {
+            const plan = sodSalePlans.find(p => p.id === planId);
+            if (!plan) return;
+            
+            // محاسبه SOD با در نظر گرفتن تخفیف
+            const bonusSOD = Math.floor(plan.sodAmount * (plan.discount / 100));
+            const totalSOD = plan.sodAmount + bonusSOD;
+            
+            showConfirmationModal(
+                `خرید پنل ${plan.name}`,
+                `آیا مایل به خرید پنل ${plan.name} هستید؟\n\n` +
+                `مبلغ: ${plan.usdtPrice} USDT\n` +
+                `دریافت: ${formatNumber(totalSOD)} SOD\n` +
+                `(اصلی: ${formatNumber(plan.sodAmount)} SOD + هدیه: ${formatNumber(bonusSOD)} SOD)`,
+                () => {
+                    // در نسخه واقعی اینجا باید پرداخت انجام شود
+                    // فعلاً فقط اضافه می‌کنیم
+                    gameData.sodBalance += totalSOD;
+                    
+                    showNotification(
+                        '🎉 خرید موفق', 
+                        `پنل ${plan.name} با موفقیت خریداری شد!\n` +
+                        `${formatNumber(totalSOD)} SOD به موجودی شما اضافه شد.`
+                    );
+                    
+                    // ثبت تراکنش
+                    addTransaction(`خرید پنل ${plan.name}`, totalSOD, 'sod');
+                    
+                    updateUI();
+                    saveGame();
+                }
+            );
         }
-        
-        // ==================== Event Listeners ====================
-        
-        document.getElementById('registerForm').addEventListener('submit', handleRegistration);
-        document.getElementById('minerCore').addEventListener('click', manualMine);
-        document.getElementById('claimUSDTBtn').addEventListener('click', claimUSDT);
-        
+
+        // نمایش بخش فروش SOD
+        function showSODSale() {
+            document.getElementById('sodSaleSection').style.display = 'block';
+            document.getElementById('sodSaleSection').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // شروع بازی
+        function startGame() {
+            hideRegister();
+            updateUI();
+            
+            // نمایش پیام خوش‌آمدگویی
+            setTimeout(() => {
+                showNotification('🌟 خوش آمدید', 'سیستم استخراج آماده است! کلیک کنید و SOD استخراج کنید.');
+            }, 500);
+        }
+
+        // کلیک برای استخراج
+        document.getElementById('minerCore').addEventListener('click', function() {
+            let earned = gameData.miningPower;
+            
+            if (gameData.boostActive) {
+                earned *= 3;
+            }
+            
+            gameData.sodBalance += earned;
+            gameData.todayEarnings += earned;
+            gameData.usdtProgress += earned;
+            
+            // افکت
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+            
+            // ایجاد افکت متن
+            createMiningEffect(earned);
+            
+            // بررسی پاداش USDT
+            checkUSDT();
+            
+            updateUI();
+            saveGame();
+            addTransaction('استخراج دستی', earned, 'sod');
+        });
+
+        // استخراج خودکار
         document.getElementById('autoMineBtn').addEventListener('click', function() {
             if (gameData.sodBalance < 1000000) {
-                showNotification('⚠️', 'برای استخراج خودکار حداقل ۱ میلیون SOD نیاز دارید.');
+                showNotification('⚠️ موجودی ناکافی', 'برای فعال کردن استخراج خودکار حداقل ۱ میلیون SOD نیاز دارید.');
                 return;
             }
             
@@ -1719,50 +1575,334 @@
             if (gameData.autoMining) {
                 this.innerHTML = '<i class="fas fa-pause"></i> توقف خودکار';
                 this.style.background = 'var(--error)';
-                showNotification('🤖', 'استخراج خودکار فعال شد.');
+                showNotification('🤖 استخراج خودکار', 'سیستم استخراج خودکار فعال شد.');
                 
                 // شروع استخراج خودکار
-                const interval = setInterval(() => {
-                    if (!gameData.autoMining) {
-                        clearInterval(interval);
-                        return;
-                    }
-                    manualMine();
-                }, 1000);
+                startAutoMining();
             } else {
                 this.innerHTML = '<i class="fas fa-robot"></i> استخراج خودکار';
                 this.style.background = '';
-                showNotification('⏸️', 'استخراج خودکار متوقف شد.');
+                showNotification('⏸️ توقف خودکار', 'استخراج خودکار متوقف شد.');
             }
         });
-        
-        // ==================== Initialize ====================
-        
-        function init() {
-            // بررسی ثبت نام قبلی
-            const savedUser = localStorage.getItem('sodmaxUserData');
-            const savedGame = localStorage.getItem('sodmaxGameData');
+
+        // تابع استخراج خودکار
+        function startAutoMining() {
+            if (!gameData.autoMining) return;
             
-            if (savedUser && savedGame) {
-                userData = JSON.parse(savedUser);
-                gameData = JSON.parse(savedGame);
-                startGame();
+            const autoMineInterval = setInterval(() => {
+                if (!gameData.autoMining) {
+                    clearInterval(autoMineInterval);
+                    return;
+                }
+                
+                let earned = Math.floor(gameData.miningPower * 0.5); // نیم قدرت کلیک دستی
+                
+                if (gameData.boostActive) {
+                    earned *= 3;
+                }
+                
+                gameData.sodBalance += earned;
+                gameData.todayEarnings += earned;
+                gameData.usdtProgress += earned;
+                
+                checkUSDT();
+                updateUI();
+                saveGame();
+                
+            }, 1000); // هر ثانیه
+        }
+
+        // افزایش قدرت
+        function boostMining() {
+            if (gameData.sodBalance >= 5000) {
+                gameData.sodBalance -= 5000;
+                gameData.boostActive = true;
+                gameData.boostEndTime = Date.now() + (30 * 60 * 1000); // 30 دقیقه
+                
+                showNotification('⚡ افزایش قدرت', 'قدرت استخراج شما ۳ برابر شد! (۳۰ دقیقه)');
+                addTransaction('خرید افزایش قدرت', -5000, 'sod');
+                
+                // تایمر برای پایان بوست
+                setTimeout(() => {
+                    gameData.boostActive = false;
+                    showNotification('پایان بوست', 'زمان افزایش قدرت به پایان رسید.');
+                }, 30 * 60 * 1000);
+                
+                updateUI();
+                saveGame();
             } else {
-                showRegister();
+                showNotification('⚠️ موجودی کافی نیست', 'برای افزایش قدرت به ۵۰۰۰ SOD نیاز دارید.');
+            }
+        }
+
+        // بررسی پاداش USDT
+        function checkUSDT() {
+            if (gameData.usdtProgress >= 10000000) {
+                let usdtEarned = 0.01;
+                
+                gameData.usdtBalance += usdtEarned;
+                gameData.usdtProgress -= 10000000;
+                gameData.lastClaimTime = new Date().toLocaleString('fa-IR');
+                
+                showNotification('🎉 پاداش USDT', usdtEarned.toFixed(4) + ' USDT دریافت کردید!');
+                addTransaction('دریافت پاداش USDT', usdtEarned, 'usdt');
+                
+                // شانس ارتقاء سطح
+                if (Math.random() > 0.85) {
+                    gameData.userLevel++;
+                    gameData.miningPower = 10 * gameData.userLevel;
+                    showNotification('⭐ ارتقاء سطح', 'سطح شما به ' + gameData.userLevel + ' ارتقاء یافت!');
+                }
+                
+                updateUI();
+                saveGame();
+            }
+        }
+
+        // دریافت USDT
+        document.getElementById('claimUSDTBtn').addEventListener('click', function() {
+            if (gameData.usdtBalance > 0) {
+                const usdtToClaim = gameData.usdtBalance;
+                const sodNeeded = usdtToClaim * 1000000000;
+                
+                if (gameData.sodBalance >= sodNeeded) {
+                    showConfirmationModal(
+                        'دریافت پاداش USDT',
+                        `آیا مایل به دریافت ${usdtToClaim.toFixed(4)} USDT هستید؟\n\n` +
+                        `برای این کار ${formatNumber(sodNeeded)} SOD از موجودی شما کسر خواهد شد.`,
+                        () => {
+                            gameData.usdtBalance = 0;
+                            gameData.sodBalance -= sodNeeded;
+                            
+                            showNotification(
+                                '✅ پاداش دریافت شد', 
+                                `${usdtToClaim.toFixed(4)} USDT دریافت کردید.\n` +
+                                `${formatNumber(sodNeeded)} SOD از موجودی کسر شد.`
+                            );
+                            
+                            addTransaction('دریافت پاداش USDT', -usdtToClaim, 'usdt');
+                            addTransaction('تبدیل SOD به USDT', -sodNeeded, 'sod');
+                            
+                            updateUI();
+                            saveGame();
+                        }
+                    );
+                } else {
+                    showNotification('⚠️ موجودی SOD ناکافی', 
+                        `برای دریافت ${usdtToClaim.toFixed(4)} USDT به ${formatNumber(sodNeeded)} SOD نیاز دارید.\n` +
+                        `موجودی فعلی شما: ${formatNumber(gameData.sodBalance)} SOD`);
+                }
+            } else {
+                showNotification('💰 ادامه استخراج', 'هنوز USDT پاداش دریافت نکرده‌اید.');
+            }
+        });
+
+        // آپدیت UI
+        function updateUI() {
+            // موجودی‌ها
+            document.getElementById('sodBalance').innerHTML = formatNumber(gameData.sodBalance) + ' <span>SOD</span>';
+            document.getElementById('usdtBalance').innerHTML = gameData.usdtBalance.toFixed(4) + ' <span>USDT</span>';
+            
+            // آمار
+            document.getElementById('todayEarnings').textContent = formatNumber(gameData.todayEarnings) + ' SOD';
+            document.getElementById('miningPower').textContent = gameData.miningPower + 'x';
+            document.getElementById('clickReward').textContent = '+' + gameData.miningPower + ' SOD';
+            document.getElementById('userLevel').textContent = gameData.userLevel;
+            
+            // پاداش USDT
+            document.getElementById('availableUSDT').textContent = gameData.usdtBalance.toFixed(4) + ' USDT';
+            document.getElementById('nextReward').textContent = '۰.۰۱ USDT';
+            
+            const progressPercent = (gameData.usdtProgress / 10000000) * 100;
+            document.getElementById('progressFill').style.width = progressPercent + '%';
+            document.getElementById('progressText').textContent = formatNumber(gameData.usdtProgress) + ' / ۱۰,۰۰۰,۰۰۰ SOD (۰.۰۱ USDT)';
+            
+            // آخرین دریافت
+            if (gameData.lastClaimTime) {
+                document.getElementById('lastClaimTime').textContent = gameData.lastClaimTime;
             }
             
-            // ذخیره خودکار هر 30 ثانیه
-            setInterval(() => {
-                if (userData.isRegistered) {
-                    localStorage.setItem('sodmaxGameData', JSON.stringify(gameData));
-                }
-            }, 30000);
+            // دکمه دریافت
+            const claimBtn = document.getElementById('claimUSDTBtn');
+            if (gameData.usdtBalance > 0) {
+                claimBtn.disabled = false;
+            } else {
+                claimBtn.disabled = true;
+            }
+            
+            // دکمه استخراج خودکار
+            const autoBtn = document.getElementById('autoMineBtn');
+            if (gameData.sodBalance >= 1000000) {
+                autoBtn.disabled = false;
+            } else {
+                autoBtn.disabled = true;
+                autoBtn.innerHTML = '<i class="fas fa-robot"></i> نیاز به ۱M SOD';
+            }
+            
+            // تراکنش‌ها
+            renderTransactions();
         }
-        
-        // شروع برنامه
+
+        // رندر تراکنش‌ها
+        function renderTransactions() {
+            const list = document.getElementById('transactionsList');
+            if (!list) return;
+            
+            list.innerHTML = '';
+            
+            // اگر تراکنشی نیست، نمونه اضافه کن
+            if (gameData.transactions.length === 0) {
+                gameData.transactions.push({
+                    description: 'هدیه ثبت نام',
+                    amount: 1000000,
+                    type: 'sod',
+                    time: new Date().toLocaleString('fa-IR')
+                });
+            }
+            
+            gameData.transactions.slice(0, 10).forEach(tx => {
+                const row = document.createElement('div');
+                row.className = 'transaction-row';
+                
+                let icon = '⛏️';
+                let amountClass = '';
+                let amount = '+' + formatNumber(tx.amount) + ' SOD';
+                
+                if (tx.type === 'usdt') {
+                    icon = tx.amount > 0 ? '💰' : '💸';
+                    amount = (tx.amount > 0 ? '+' : '') + Math.abs(tx.amount).toFixed(4) + ' USDT';
+                    amountClass = tx.amount > 0 ? 'usdt' : 'usdt-negative';
+                } else if (tx.amount < 0) {
+                    icon = '📤';
+                    amount = formatNumber(tx.amount) + ' SOD';
+                } else if (tx.description.includes('خرید پنل')) {
+                    icon = '🛒';
+                }
+                
+                row.innerHTML = `
+                    <div class="transaction-type">
+                        <div class="transaction-icon">${icon}</div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold;">${tx.description}</div>
+                            <div style="color: var(--text-secondary); font-size: 12px;">${tx.time}</div>
+                        </div>
+                        <div style="font-weight: bold; color: ${tx.type === 'usdt' ? (tx.amount > 0 ? 'var(--usdt)' : 'var(--error)') : (tx.amount > 0 ? 'var(--primary-light)' : 'var(--error)')}">
+                            ${amount}
+                        </div>
+                    </div>
+                `;
+                list.appendChild(row);
+            });
+        }
+
+        // افزودن تراکنش
+        function addTransaction(description, amount, type = 'sod') {
+            const now = new Date();
+            const time = now.toLocaleTimeString('fa-IR');
+            const date = now.toLocaleDateString('fa-IR');
+            
+            gameData.transactions.unshift({
+                description,
+                amount,
+                type,
+                time: `${date} ${time}`
+            });
+            
+            if (gameData.transactions.length > 20) {
+                gameData.transactions.pop();
+            }
+        }
+
+        // ایجاد افکت استخراج
+        function createMiningEffect(amount) {
+            const effect = document.createElement('div');
+            effect.style.cssText = `
+                position: fixed;
+                color: var(--primary-light);
+                font-weight: 900;
+                font-size: 16px;
+                pointer-events: none;
+                z-index: 10000;
+                text-shadow: 0 0 10px var(--primary);
+                animation: miningEffect 1s ease-out forwards;
+            `;
+            
+            const core = document.getElementById('minerCore');
+            const rect = core.getBoundingClientRect();
+            effect.style.left = rect.left + rect.width / 2 + 'px';
+            effect.style.top = rect.top + rect.height / 2 + 'px';
+            effect.textContent = '+' + formatNumber(amount);
+            
+            document.body.appendChild(effect);
+            
+            setTimeout(() => effect.remove(), 1000);
+        }
+
+        // فرمت عدد
+        function formatNumber(num) {
+            if (num >= 1000000000) {
+                return (num / 1000000000).toFixed(2) + 'B';
+            }
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            }
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'K';
+            }
+            return Math.floor(num).toLocaleString('fa-IR');
+        }
+
+        // نمایش نوتیفیکیشن
+        function showNotification(title, message) {
+            const notification = document.getElementById('notification');
+            document.getElementById('notificationTitle').textContent = title;
+            document.getElementById('notificationMessage').textContent = message;
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // مودال تایید
+        function showConfirmationModal(title, message, onConfirm) {
+            if (window.confirm(`${title}\n\n${message}`)) {
+                onConfirm();
+            }
+        }
+
+        // نمایش قوانین
+        function showTerms() {
+            alert('📜 قوانین و شرایط استفاده\n\n۱. کاربر متعهد می‌شود اطلاعات صحیح وارد کند.\n۲. هر کاربر فقط یک حساب می‌تواند داشته باشد.\n۳. مسئولیت حفظ امنیت حساب با کاربر است.\n۴. نرخ‌ها ممکن است تغییر کنند.');
+        }
+
+        // ذخیره بازی
+        function saveGame() {
+            try {
+                localStorage.setItem('sodmaxGameData', JSON.stringify(gameData));
+            } catch (e) {
+                console.log('خطا در ذخیره:', e);
+            }
+        }
+
+        // رویدادها
+        function setupEventListeners() {
+            window.addEventListener('beforeunload', saveGame);
+            
+            // ذخیره خودکار هر ۳۰ ثانیه
+            setInterval(saveGame, 30000);
+        }
+
+        // راه‌اندازی
         window.addEventListener('DOMContentLoaded', init);
-        
-        console.log('🚀 SODmAX Pro آماده است!');
+
+        console.log('🛒 SODmAX Pro با پنل‌های فروش SOD آماده است!');
+        console.log('💰 ۴ پنل ویژه فروش SOD اضافه شد');
+        console.log('⛏️ سیستم ثبت نام و استخراج کامل');
+        console.log('💎 نرخ تبدیل: 10,000,000 SOD = 0.01 USDT');
     </script>
 </body>
+
 </html>
