@@ -1360,9 +1360,7 @@
             transactions: [],
             boostActive: false,
             boostEndTime: 0,
-            lastClaimTime: null,
-            totalMined: 0,
-            registerDate: new Date().toLocaleDateString('fa-IR')
+            lastClaimTime: null
         };
 
         // داده‌های کاربر
@@ -1443,117 +1441,11 @@
             }
         ];
 
-        // ==================== سیستم ذخیره‌سازی یکپارچه ====================
-        
-        // سیستم ذخیره‌سازی یکپارچه برای پنل مدیریت
-        function saveGameDataForAdmin() {
-            if (!userData || !userData.email) return;
-            
-            // ذخیره اطلاعات کاربر
-            const userDataForAdmin = {
-                fullName: userData.fullName,
-                email: userData.email,
-                registerDate: gameData.registerDate || new Date().toLocaleDateString('fa-IR')
-            };
-            
-            // ذخیره اطلاعات بازی
-            const gameDataForAdmin = {
-                sodBalance: gameData.sodBalance || 0,
-                usdtBalance: gameData.usdtBalance || 0,
-                userLevel: gameData.userLevel || 1,
-                totalMined: gameData.totalMined || 0,
-                todayEarnings: gameData.todayEarnings || 0,
-                miningPower: gameData.miningPower || 10
-            };
-            
-            // ذخیره با ساختار جدید (برای پنل مدیریت)
-            localStorage.setItem('sodmaxUser_' + userData.email, JSON.stringify(userDataForAdmin));
-            localStorage.setItem('sodmaxGame_' + userData.email, JSON.stringify(gameDataForAdmin));
-            
-            // همچنین در ساختار قدیمی هم ذخیره کنید (برای سازگاری)
-            localStorage.setItem('sodmaxUserData', JSON.stringify(userDataForAdmin));
-            localStorage.setItem('sodmaxGameData', JSON.stringify(gameDataForAdmin));
-            
-            console.log('✅ داده‌ها برای پنل مدیریت ذخیره شدند:', userData.email);
-            return true;
-        }
-
-        // آپدیت لیست کاربران فعال
-        function updateActiveUsers() {
-            try {
-                let activeUsers = JSON.parse(localStorage.getItem('sodmaxActiveUsers') || '[]');
-                
-                const userIndex = activeUsers.findIndex(u => u.email === userData.email);
-                const userInfo = {
-                    email: userData.email,
-                    name: userData.fullName,
-                    level: gameData.userLevel || 1,
-                    sod: gameData.sodBalance || 0,
-                    usdt: gameData.usdtBalance || 0,
-                    totalMined: gameData.totalMined || 0,
-                    lastActive: new Date().toISOString(),
-                    registerDate: gameData.registerDate || new Date().toLocaleDateString('fa-IR')
-                };
-                
-                if (userIndex === -1) {
-                    activeUsers.push(userInfo);
-                } else {
-                    activeUsers[userIndex] = userInfo;
-                }
-                
-                localStorage.setItem('sodmaxActiveUsers', JSON.stringify(activeUsers));
-                
-            } catch (e) {
-                console.log('⚠️ خطا در آپدیت کاربران فعال:', e);
-            }
-        }
-
-        // ذخیره بازی پیشرفته
-        function saveGameAdvanced() {
-            try {
-                if (!userData || !userData.email) return;
-                
-                // ذخیره یکپارچه برای پنل مدیریت
-                saveGameDataForAdmin();
-                
-                // آپدیت لیست کاربران فعال
-                updateActiveUsers();
-                
-            } catch (e) {
-                console.log('⚠️ خطا در ذخیره پیشرفته:', e);
-            }
-        }
-
-        // سینک خودکار بین ساختار قدیم و جدید
-        function syncDataStructures() {
-            try {
-                const oldUserData = JSON.parse(localStorage.getItem('sodmaxUserData') || '{}');
-                if (oldUserData.email) {
-                    // اگر ساختار قدیم وجود دارد و ساختار جدید ندارد
-                    const newKey = 'sodmaxUser_' + oldUserData.email;
-                    if (!localStorage.getItem(newKey)) {
-                        localStorage.setItem(newKey, JSON.stringify(oldUserData));
-                        
-                        // همچنین اطلاعات بازی را هم سینک کن
-                        const oldGameData = JSON.parse(localStorage.getItem('sodmaxGameData') || '{}');
-                        localStorage.setItem('sodmaxGame_' + oldUserData.email, JSON.stringify(oldGameData));
-                        
-                        console.log('🔄 داده‌ها از ساختار قدیم به جدید سینک شدند');
-                    }
-                }
-            } catch (e) {
-                console.log('⚠️ خطا در سینک داده‌ها:', e);
-            }
-        }
-
-        // ==================== تابع‌های اصلی ====================
-
         // راه‌اندازی
         function init() {
             checkRegistration();
             setupEventListeners();
             renderSODSalePlans();
-            syncDataStructures();
             
             if (!userData.isRegistered) {
                 showRegister();
@@ -1614,8 +1506,6 @@
             // مقدار اولیه بازی
             gameData.sodBalance = 1000000; // 1 میلیون SOD هدیه ثبت نام
             gameData.usdtProgress = 1000000;
-            gameData.totalMined = 1000000;
-            gameData.registerDate = new Date().toLocaleDateString('fa-IR');
             
             // ذخیره در localStorage
             localStorage.setItem('sodmaxUserData', JSON.stringify(userData));
@@ -1688,7 +1578,6 @@
                     // در نسخه واقعی اینجا باید پرداخت انجام شود
                     // فعلاً فقط اضافه می‌کنیم
                     gameData.sodBalance += totalSOD;
-                    gameData.totalMined += totalSOD;
                     
                     showNotification(
                         '🎉 خرید موفق', 
@@ -1738,7 +1627,6 @@
             
             gameData.sodBalance += earned;
             gameData.todayEarnings += earned;
-            gameData.totalMined += earned;
             gameData.usdtProgress += earned;
             
             // افکت
@@ -1799,7 +1687,6 @@
                 
                 gameData.sodBalance += earned;
                 gameData.todayEarnings += earned;
-                gameData.totalMined += earned;
                 gameData.usdtProgress += earned;
                 
                 checkUSDT();
@@ -2110,6 +1997,54 @@
             }
         }
 
+        // سیستم ذخیره‌سازی پیشرفته برای پنل مدیریت
+        function saveGameAdvanced() {
+            try {
+                if (!userData || !userData.email) return;
+                
+                // ذخیره کاربر با ساختار جدید
+                localStorage.setItem('sodmaxUser_' + userData.email, JSON.stringify(userData));
+                
+                // ذخیره اطلاعات بازی
+                localStorage.setItem('sodmaxGame_' + userData.email, JSON.stringify(gameData));
+                
+                // آپدیت لیست کاربران فعال
+                updateActiveUsers();
+                
+            } catch (e) {
+                console.log('⚠️ خطا در ذخیره پیشرفته:', e);
+            }
+        }
+
+        // آپدیت لیست کاربران فعال
+        function updateActiveUsers() {
+            try {
+                let activeUsers = JSON.parse(localStorage.getItem('sodmaxActiveUsers') || '[]');
+                
+                const userIndex = activeUsers.findIndex(u => u.email === userData.email);
+                const userInfo = {
+                    email: userData.email,
+                    name: userData.fullName,
+                    level: gameData.userLevel || 1,
+                    sod: gameData.sodBalance || 0,
+                    usdt: gameData.usdtBalance || 0,
+                    lastActive: new Date().toISOString(),
+                    registerDate: new Date().toLocaleDateString('fa-IR')
+                };
+                
+                if (userIndex === -1) {
+                    activeUsers.push(userInfo);
+                } else {
+                    activeUsers[userIndex] = userInfo;
+                }
+                
+                localStorage.setItem('sodmaxActiveUsers', JSON.stringify(activeUsers));
+                
+            } catch (e) {
+                console.log('⚠️ خطا در آپدیت کاربران فعال:', e);
+            }
+        }
+
         // ==================== راه‌اندازی ====================
 
         // راه‌اندازی سیستم مدیریت
@@ -2132,7 +2067,5 @@
         console.log('⛏️ سیستم ثبت نام و استخراج کامل');
         console.log('💎 نرخ تبدیل: 10,000,000 SOD = 0.01 USDT');
     </script>
-    <script src="data-manager.js"></script>
 </body>
 </html>
-
